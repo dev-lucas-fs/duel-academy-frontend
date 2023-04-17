@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Card from "./Card";
 
 
@@ -18,6 +19,9 @@ const TagForceImgs = [
 ]
 
 export default function Deck(props: DeckTypes) {
+
+    const [open, setOpen] = useState(false)
+
     return (
         <div className="community-deck">
 
@@ -37,11 +41,18 @@ export default function Deck(props: DeckTypes) {
                 <span className="material-icons community-deck__expand">expand</span>
             </div>
             
-            <div className={"community-deck__expand-deck"}>
+            <div className={"community-deck__expand-deck " + (open ? ".community-deck__expand-deck__open" : "")}>
                 <div className="community-deck__expand-deck__container">
                     <div className="community-deck__expand-deck__first-row">
                         {
-                            props.cards.map((card, i) => (
+                            props.cards.slice(0, 5).map((card, i) => (
+                                <Card cardId={card.id} url={card.img} />
+                            ))
+                        }
+                    </div>
+                    <div className="community-deck__expand-deck__row">
+                        {
+                            props.cards.slice(5).map((card, i) => (
                                 <Card cardId={card.id} url={card.img} />
                             ))
                         }

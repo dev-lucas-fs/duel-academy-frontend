@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
-    "@types/axios": "^0.14.0"
+    "@types/axios": "^0.14.0",
+    "resolve-url-loader": "^5.0.0"
   }
 }

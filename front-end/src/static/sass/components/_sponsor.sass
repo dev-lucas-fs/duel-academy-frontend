@@ -1,0 +1,46 @@
+@use "sass:map"
+@import "../essencials/_variables"
+
+
+.sponsor
+    width: 100%
+    height: 100px
+    position: relative
+    border-radius: 3px
+    cursor: pointer
+    transition: .3s ease all
+    &:hover
+        transition: .3s ease all
+        .mask        
+            border-radius: 3px
+        .mask, img
+            transform: scale(1.05, 1.05)
+            transition: .3s ease all
+
+    .mask
+        top: 0
+        left: 0
+        position: absolute
+        border: 2px solid map-get($theme-colors, "secondary")
+        width: 100%
+        height: 100%
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 20%, map-get($theme-colors, "primary") 100%)
+        display: flex
+        align-items: center
+        justify-content: center
+        color: #fff
+        padding: 10px
+        text-align: center
+        font-weight: 900
+        font-size: .9em
+
+    img
+        width: 100%
+        height: 100%
+        object-fit: cover
+        border-radius: 5px
+
+
+@media (min-width: map-get($breaking-points, "medium")) 
+    .sponsor
+        height: 150px

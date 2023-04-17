@@ -1,0 +1,50 @@
+@import "./../essencials/_variables.sass"
+
+
+.select
+    position: relative
+    .currentOption
+        background: map-get($theme-colors, "secondary-contrast")
+        border: 1px solid map-get($theme-colors, "secondary")
+        border-radius: 3px
+        height: 40px
+        padding: 0 10px
+        display: flex
+        justify-content: space-between
+        gap: 10px
+        align-items: center
+        font-weight: normal
+        cursor: pointer
+    
+    .material-icons
+        cursor: pointer
+        
+    &.select__open
+        .options
+            display: block
+
+    .options
+        width: 100%
+        display: none
+        position: absolute
+        top: calc(100% + 5px)
+        left: 0
+        background: map-get($theme-colors, "secondary-contrast")
+        border: 1px solid map-get($theme-colors, "secondary")
+        border-radius: 3px
+
+
+        .option
+            padding: 10px
+            font-weight: normal
+            font-size: .9em
+            color: map-get($theme-colors, "text")
+            transition: color .3s ease
+            cursor: pointer
+            &:hover
+                color: map-get($theme-colors, "text-highlight")
+                transition: color .3s ease
+
+        .option:not(:first-child)
+            border-top: 1px solid map-get($theme-colors, "secondary")
+            

@@ -7,8 +7,6 @@ import useCards from "../hooks/api/useCards";
 import { getCardsType } from "../services/cardAPI";
 import useSaveDeck from "../hooks/api/useSaveDeck";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 export type CardType = {
     card: { name: string, type: string, img: string, id: number },

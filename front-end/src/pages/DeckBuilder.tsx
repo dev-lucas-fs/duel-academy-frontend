@@ -6,6 +6,9 @@ import Select from "../components/Select";
 import useCards from "../hooks/api/useCards";
 import { getCardsType } from "../services/cardAPI";
 import useSaveDeck from "../hooks/api/useSaveDeck";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export type CardType = {
     card: { name: string, type: string, img: string, id: number },
@@ -23,7 +26,6 @@ export default function DeckBuilder() {
     const [collectionDeckSelect, setCollectionDeckSelect] = useState(0);
     const [decks, setDecks] = useState<Array<Array<CardType>>>([[], [], []])
     const [filter, setFilter] = useState({ name: "" })
-    const [disabled, setDisabled] = useState(false)
     const cardsAPI = useCards()
     const saveDeckAPI = useSaveDeck()
 
@@ -35,12 +37,14 @@ export default function DeckBuilder() {
         }, [])
         try {
             if(deckName.trim() !== "") {
+                if(saveDeckAPI.tokenError === "No Token") {
+                    alert("You can't save a deck without a account")
+                }
+                    
                 const response = await saveDeckAPI.saveDeck({ cards, name: deckName })
 
-                if(response !== "No Token")
-                    alert("Sucesso")
-                else
-                    alert("Algo deu errado")
+                alert("Success")
+                
             }
             
         } catch(err) {
@@ -89,6 +93,7 @@ export default function DeckBuilder() {
 
     return (
         <Layout title="Deck Builder">
+
             <div className="deck-builder">
                 <div className="deck-builder__filter">
 

@@ -45,8 +45,6 @@ export default function CardModal( props : CardModalType ) {
                             <div className="howtoobtain__header__container">
                                 <div className="howtoobtain__header">
                                     How to obtain
-
-                                    <Select handleSelect={(text: string) => {}} options={[]}/>
                                 </div>
                             </div>
 

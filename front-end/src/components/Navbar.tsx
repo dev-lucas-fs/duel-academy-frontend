@@ -41,10 +41,6 @@ export default function Navbar() {
                                 Login
                         </li>
                         <li onClick={() => navigateTo("/")}>
-                            <span className="material-icons">home</span>
-                                Home
-                        </li>
-                        <li onClick={() => navigateTo("/")}>
                             <span className="material-icons">style</span>
                                 Cards
                         </li>
@@ -52,7 +48,7 @@ export default function Navbar() {
                             <span className="material-icons">construction</span>
                                 Deck Builder
                         </li>
-                        <li onClick={() => navigateTo("/deck-builder")}>
+                        <li onClick={() => navigateTo("/my-decks")}>
                             <span className="material-icons">dashboard</span>
                                 My Deck
                         </li>

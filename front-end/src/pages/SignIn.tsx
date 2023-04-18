@@ -12,8 +12,8 @@ export default function SignIn() {
     const redirect = useNavigate()
 
     const [form, setForm] = useState({
-        email: "lucas1@gmail.com",
-        password: "123456"
+        email: "",
+        password: ""
     })
     const signAPI = useSignIn()
     const token = useToken()
@@ -26,6 +26,7 @@ export default function SignIn() {
             token.saveToken(response.token)
             redirect("/")
         } catch(err) {
+            alert("Ocorreu algum erro ao tentar logar")
             console.log(err)
         }
         
@@ -37,7 +38,7 @@ export default function SignIn() {
             <div className="sign-in-page">
                 <form onSubmit={handleSubmit}>
                     <Input icon="email" placeholder="Email" value={form.email} onChange={e => setForm(() => ({...form, ...{ email: e.target.value }}))}/>
-                    <Input icon="password" placeholder="Password" value={form.password} onChange={e => setForm(() => ({...form, ...{ password: e.target.value }}))}/>
+                    <Input type="password" icon="password" placeholder="Password" value={form.password} onChange={e => setForm(() => ({...form, ...{ password: e.target.value }}))}/>
                     <div className="container-button">
                         <Button>
                             Sign In

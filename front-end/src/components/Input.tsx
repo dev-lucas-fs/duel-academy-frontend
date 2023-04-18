@@ -4,11 +4,11 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     icon?: string
 }
 
-export default function Input({ onChange, value, placeholder, icon = "search", name = "" }: InputProps) {
+export default function Input({ onChange, value, placeholder, icon = "search", name = "", type = "text" }: InputProps) {
     return (
         <div className="input">
             <span className="material-icons">{icon}</span>
-            <input onChange={onChange} value={value} type="text" placeholder={placeholder} name={name}/>
+            <input type={type} onChange={onChange} value={value} placeholder={placeholder} name={name}/>
         </div>
     )
 }

@@ -25,7 +25,7 @@ export default function Deck(props: DeckTypes) {
     return (
         <div className="community-deck">
 
-            <div className="community-deck__info">
+            <div className={"community-deck__info "}>
                 <div className="community-deck__avatar-container">
                     <img src="https://i.ibb.co/QCjYzcv/marik.png" alt="" />
                 </div>
@@ -38,21 +38,21 @@ export default function Deck(props: DeckTypes) {
 
                 <h2 className="community-deck__username">{ props.username }</h2>
 
-                <span className="material-icons community-deck__expand">expand</span>
+                <span className="material-icons community-deck__expand" onClick={() => setOpen(open => !open)}>expand</span>
             </div>
             
-            <div className={"community-deck__expand-deck " + (open ? ".community-deck__expand-deck__open" : "")}>
+            <div className={"community-deck__expand-deck "  + (open ? "community-deck__expand-deck__open" : "")}>
                 <div className="community-deck__expand-deck__container">
                     <div className="community-deck__expand-deck__first-row">
                         {
-                            props.cards.slice(0, 5).map((card, i) => (
+                            props.cards.slice(0, 6).map((card, i) => (
                                 <Card cardId={card.id} url={card.img} />
                             ))
                         }
                     </div>
                     <div className="community-deck__expand-deck__row">
                         {
-                            props.cards.slice(5).map((card, i) => (
+                            props.cards.slice(6).map((card, i) => (
                                 <Card cardId={card.id} url={card.img} />
                             ))
                         }

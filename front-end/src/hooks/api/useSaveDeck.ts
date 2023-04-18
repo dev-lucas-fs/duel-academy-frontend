@@ -6,8 +6,10 @@ import useToken from '../useToken';
 export default function useSaveDeck() {
     const { getToken } = useToken()
     const token = getToken()
-    if(!token)
-        throw "No Token"
+    let error = ""
+
+    if(token === null)
+        error = "No Token"
 
     const {
         loading: saveDeckLoading,
@@ -16,6 +18,7 @@ export default function useSaveDeck() {
     } = useAsync(({ cards, name }: { cards: Array<number>, name: string }) => deckAPI.saveDeck({ cards, name, token }), false);
 
     return {
+        tokenError: error,
         saveDeckLoading,
         saveDeckError,
         saveDeck

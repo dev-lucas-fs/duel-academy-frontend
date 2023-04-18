@@ -11,9 +11,9 @@ export default function SignUp() {
     const redirect = useNavigate()
 
     const [form, setForm] = useState({
-        username: "adm",
-        email: "lucas1@gmail.com",
-        password: "123456"
+        username: "",
+        email: "",
+        password: ""
     })
     const signAPI = useSignUp()
 
@@ -36,7 +36,7 @@ export default function SignUp() {
                 <form onSubmit={handleSubmit}>
                     <Input icon="person" placeholder="Username" name="username" value={form.username} onChange={e => setForm(() => ({...form, ...{ username: e.target.value }}))}/>
                     <Input icon="email" placeholder="Email" name="email" value={form.email} onChange={e => setForm(() => ({...form, ...{ email: e.target.value }}))}/>
-                    <Input icon="password" placeholder="Password" name="password" value={form.password} onChange={e => setForm(() => ({...form, ...{ password: e.target.value }}))}/>
+                    <Input type="password" icon="password" placeholder="Password" name="password" value={form.password} onChange={e => setForm(() => ({...form, ...{ password: e.target.value }}))}/>
                     <div className="container-button">
                         <Button>
                             Sign Up

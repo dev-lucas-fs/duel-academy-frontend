@@ -13,9 +13,9 @@ export default function Layout({ title, children } : Props) {
             <Navbar />
             <Container className="layout__container">
                 <div className="sponsor">
-                    <img src={"https://i.ibb.co/LrMNxQ9/tag-force-3-bg.jpg"} alt="" />
+                    <img src={"https://static1.cbrimages.com/wordpress/wp-content/uploads/2022/07/maxresdefaultjpg.jpg"} alt="" />
                     <div className="mask">
-                        Get Your Game On! Let’s play Yu-Gi-Oh Tag Force 3
+                        Get Your Game On! Let’s play Yu-Gi-Oh Tag Force
                     </div>
                 </div>
 

@@ -1,14 +1,39 @@
-import React from "react";
+import { styled } from "styled-components";
+import { MdSearch } from "react-icons/md"
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    icon?: string
-}
 
-export default function Input({ onChange, value, placeholder, icon = "search", name = "", type = "text" }: InputProps) {
+
+export default function Input({ ...rest})
+{
+
     return (
-        <div className="input">
-            <span className="material-icons">{icon}</span>
-            <input type={type} onChange={onChange} value={value} placeholder={placeholder} name={name}/>
-        </div>
-    )
+        <Wrapper>
+            <Icon />
+            <input type="text" {...rest}/>
+        </Wrapper>
+    );
 }
+
+const Wrapper = styled.label`
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 15px 10px;
+    color: #fff;
+    border: 1px solid ${props => props.theme.tertiary};
+    border-radius: 5px;
+    cursor: text;
+    input {
+        background: transparent;
+        border: none;
+        outline: transparent;
+        color: ${props => props.theme.white};
+        font-size: 1.8em;
+        font-family: "Sofia Sans", sans-serif;
+    }
+`
+
+const Icon = styled(MdSearch)`
+    fill: ${props => props.theme.white};
+    font-size: 20px;
+`

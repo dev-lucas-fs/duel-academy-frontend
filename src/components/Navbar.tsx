@@ -1,61 +1,96 @@
-import { Link, useNavigate } from "react-router-dom";
-import Container from "./Container";
-import { useEffect, useState } from "react";
+import { styled } from "styled-components";
+import logo from "../static/imgs/logo.png";
+import { useToggle } from "../hooks/useToggle";
 
 
-export default function Navbar() {
-    const [toggleMenu, setToggleMenu] = useState({ show: false, path: "" })
-    const navigate = useNavigate()
-    function navigateTo(path: string) {
-        setToggleMenu(toggleMenu => ({ show: false, path }))
-    }
 
-    function toggleModal() {
-        setToggleMenu(toggleMenu => ({ show: !toggleMenu.show, path: "" }))
-    }
+export default function Navbar()
+{
+    const { toggle, handleToggle } = useToggle(false);
 
-    useEffect(() => {
-        navigate(toggleMenu.path)
-    }, [toggleMenu])
 
     return (
-        <nav className="navbar">
-            <Container>
-                <div className="logo">
-                    <span className="material-icons logo__icon">change_history</span>
-                    <span className="logo__text">TG GUIDE</span>
-                </div>
-                <span className="material-icons navbar__menu" onClick={toggleModal}>menu</span>
-            </Container>
-
-            <div className={"navbar__menu__container " + (!toggleMenu.show ? "navbar__menu__container__close" : "")}>
-                <div className="mask" onClick={toggleModal}></div>
-
-                <div className="options-container">
-
-                    <h1>Menu</h1>
-
-                    <ul>
-                        <li onClick={() => navigateTo("/sign-in")}>
-                            <span className="material-icons">person</span>
-                                Login
-                        </li>
-                        <li onClick={() => navigateTo("/")}>
-                            <span className="material-icons">style</span>
-                                Cards
-                        </li>
-                        <li onClick={() => navigateTo("/deck-builder")}>
-                            <span className="material-icons">construction</span>
-                                Deck Builder
-                        </li>
-                        <li onClick={() => navigateTo("/my-decks")}>
-                            <span className="material-icons">dashboard</span>
-                                My Deck
-                        </li>
-                    </ul>
-                </div>
-
+        <Wrapper $open={toggle}>
+            <div className="logo">
+                <img src={logo} alt="" />
             </div>
-        </nav>
-    )
+
+            <div className="hamburguer-btn hide" onClick={handleToggle}>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </Wrapper>       
+    );
 }
+
+const Wrapper = styled.nav<{ $open?: boolean }>`
+    display: flex;
+    padding: 20px;
+    background-color: ${props => props.theme.primary};
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid ${props => props.theme.tertiary};
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: ${props => props.theme.white};
+        font-family: "Sofia Sans", sans-serif;
+        font-weight: 900;
+        font-size: 1.6em;
+        
+        img {
+            height: 45px;
+            object-fit: cover;
+        }
+    }
+    
+    .hide {
+        display: none !important;
+    }
+
+    .hamburguer-btn {
+        display: flex;
+        width: 30px;
+        height: 26px;
+        position: relative;
+        transform: rotate(0deg);
+        transition: .5s ease-in-out;
+        cursor: pointer;
+        margin-top: -5px;
+
+        span {
+            display: block;
+            position: absolute;
+            height: 4px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 9px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        span:nth-child(1) {
+            top: ${props => props.$open ? '50%' : 'calc(50% - 10px)'};
+            transform: ${props => props.$open ? 'rotate(135deg)' : 'rotate(0deg)'};
+        }
+
+        span:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+            left: ${props => props.$open ? '-60px' : '0'};
+            opacity: ${props => props.$open ? '0' : '1'};
+            transform: ${props => props.$open ? 'rotate(0deg)' : 'rotate(0deg)'};
+        }
+
+        span:nth-child(3) {
+            transform: translateY(-50%);
+            top: ${props => props.$open ? '50%' : 'calc(50% + 10px)'};
+            transform: ${props => props.$open ? 'rotate(-135deg)' : 'rotate(0deg)'};
+        }
+    }
+`

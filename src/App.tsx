@@ -1,22 +1,20 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./static/sass/index.sass";
-import Cards from "./pages/Cards";
-import DeckBuilder from "./pages/DeckBuilder";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import MyDeck from "./pages/MyDecks";
+import SearchCards from "./pages/SearchCards";
+import { ThemeProvider } from "styled-components";
+import { darkTheme } from "./static/themes";
+import { GlobalStyle } from "./static/global";
+
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Cards />} />
-        <Route path="/deck-builder" element={<DeckBuilder />} />
-        <Route path="/my-decks" element={<MyDeck />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider theme={darkTheme}>
+          <GlobalStyle />
+          <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<SearchCards />} />
+          </Routes>
+        </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

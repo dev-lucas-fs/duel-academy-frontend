@@ -1,12 +1,10 @@
 import { styled } from "styled-components";
 import logo from "../static/imgs/logo.png";
-import { useToggle } from "../hooks/useToggle";
-
-
+import { useState } from "react";
 
 export default function Navbar()
 {
-    const { toggle, handleToggle } = useToggle(false);
+    const [toggle, handleToggle] = useState(false);
 
 
     return (
@@ -15,7 +13,7 @@ export default function Navbar()
                 <img src={logo} alt="" />
             </div>
 
-            <div className="hamburguer-btn hide" onClick={handleToggle}>
+            <div className="hamburguer-btn hide" onClick={() => handleToggle(() => !toggle)}>
                 <span></span>
                 <span></span>
                 <span></span>

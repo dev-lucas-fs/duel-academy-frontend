@@ -23,7 +23,9 @@ const Wrapper = styled.label`
     border: 1px solid ${props => props.theme.tertiary};
     border-radius: 5px;
     cursor: text;
+    background: ${props => props.theme.secondary};
     input {
+        width: 100%;
         background: transparent;
         border: none;
         outline: transparent;

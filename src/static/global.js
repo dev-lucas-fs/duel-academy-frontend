@@ -51,19 +51,13 @@ export const GlobalStyle = createGlobalStyle`
     * {
         box-sizing: border-box;
         font-family: "Sofia Sans", sans-serif !important;
+        -webkit-tap-highlight-color: transparent !important;
     }
 
     html {
         font-size: 10px;
     }
 
-    .material-symbols-outlined {
-        font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48
-    }
 
     @keyframes shimmer {
         100% {

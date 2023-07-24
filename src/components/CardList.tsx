@@ -1,36 +1,45 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components"
-import { useToggle } from "../hooks/useToggle";
 
-const card = {
-    "id": 34541863, 
-    "name": "\"A\" Cell Breeding Device", 
-    "desc": "During each of your Standby Phases, put 1 A-Counter on 1 face-up monster your opponent controls.",
-    "image_url": "https://images.ygoprodeck.com/images/cards/34541863.jpg"
-}
-
-const data = Array.from({ length: 10 }, (v, i) => ({...card, ...{ id: card.id + i}}));
-
-export default function CardList({ cardState, name })
+export default function CardList({ selectedCardState, cardsState, name, showModal })
 {
-    const [card, setCard] = cardState;
+    const [cards, setCards] = cardsState;
+    const [selectedCard, setSelectedCard] = selectedCardState;
     const [loading, setLoading] = useState(true);
+
+    async function getCard(name: string)
+    {
+        try {
+            setCards(() => [selectedCard])
+        } catch(err) {
+            console.log("request Erro")
+            setCards(() => []);
+        }
+
+        setLoading(false);
+    } 
 
     useEffect(() => {
         setLoading(() => true);
         const timeoutId = setTimeout(() => {
-            setLoading(() => false);
-        }, 500);
+            getCard(name);
+        }, 1000);
 
         return () => clearTimeout(timeoutId)
     }, [name]);
+
+    function handleClick(i: number)
+    {
+        setSelectedCard(() => cards[i])
+        showModal();
+    }
 
     return (
         <Wrapper>
             {
                 loading 
                 ? Array.from({ length: 4 },(v, i) => <div key={i + 1} className="card card-loading"></div>)
-                : data.map(({ id, image_url }, i) => <img key={id + i} className={`card ${id == card ? 'select' : ''}`} src={image_url} onClick={() => setCard(() => id)}/>)                   
+                : cards.map(({ id, image_url }, i: number) => <img key={id} className={`card ${id == selectedCard.id && id !== -1 ? 'select' : ''}`} src={image_url} onClick={() => handleClick(i)}/>)                   
             }
         </Wrapper>
     )
@@ -53,7 +62,7 @@ const Wrapper = styled.div`
         position: relative;
         overflow: hidden;
         background-color: #edecec;
-        aspect-ratio: 6/9;
+        aspect-ratio: 2/3;
         border-radius: 0;
         &::after {
             position: absolute;

@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import Navbar from "../components/Navbar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CardList from "../components/CardList";
 import Input from "../components/Input";
 import CardInfoModal from "../components/Modal/CardInfoModal";
@@ -8,9 +8,9 @@ import CardInfoModal from "../components/Modal/CardInfoModal";
 export const defaultCard = {
     "id": -1, 
     "name": "\"A\" Cell Breeding Device", 
-    "desc": "During each of your Standby Phases, put 1 A-Counter on 1 face-up monster your opponent controls.",
-    "image_url": "https://images.ygoprodeck.com/images/cards/34541863.jpg",
-    "packs": [
+    "description": "During each of your Standby Phases, put 1 A-Counter on 1 face-up monster your opponent controls.",
+    "img": "https://images.ygoprodeck.com/images/cards/34541863.jpg",
+    "boosters": [
         {
             "name": "Anti Effect",
             "image_url": "https://ms.yugipedia.com//3/3f/Anti_Effect-Booster-GX02-Localized.png",

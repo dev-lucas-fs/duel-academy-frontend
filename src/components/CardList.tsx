@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components"
+import useCards from "../hooks/Api/useCards";
 
 export default function CardList({ selectedCardState, cardsState, name, showModal })
 {
     const [cards, setCards] = cardsState;
     const [selectedCard, setSelectedCard] = selectedCardState;
     const [loading, setLoading] = useState(true);
+    const card = useCards()
 
     async function getCard(name: string)
     {
         try {
-            setCards(() => [selectedCard])
+            const cards = await card(name);
+            setCards(() => cards)
         } catch(err) {
             console.log("request Erro")
             setCards(() => []);
@@ -20,7 +23,7 @@ export default function CardList({ selectedCardState, cardsState, name, showModa
     } 
 
     useEffect(() => {
-        setLoading(() => true);
+        setLoading(true);
         const timeoutId = setTimeout(() => {
             getCard(name);
         }, 1000);
@@ -39,7 +42,7 @@ export default function CardList({ selectedCardState, cardsState, name, showModa
             {
                 loading 
                 ? Array.from({ length: 4 },(v, i) => <div key={i + 1} className="card card-loading"></div>)
-                : cards.map(({ id, image_url }, i: number) => <img key={id} className={`card ${id == selectedCard.id && id !== -1 ? 'select' : ''}`} src={image_url} onClick={() => handleClick(i)}/>)                   
+                : cards.map(({ id, img }, i: number) => <img key={id} className={`card`} src={img} onClick={() => handleClick(i)}/>)                   
             }
         </Wrapper>
     )
@@ -87,9 +90,5 @@ const Wrapper = styled.div`
         .card {
             width: calc((100% - 10px * 5) / 6);
         }
-    }
-
-    .select {
-        border-color: red;
     }
 `;

@@ -7,17 +7,17 @@ import Modal from "./Modal";
 
 export default function CardInfoModal({ modalState, card })
 {
-    const { name, desc, image_url, packs } = card;
-
+    const { name, description, img, boosters } = card;
+    
     return (
         <Modal modalState={modalState}>
             <Wrapper>
                 <div className="card-container">
-                    <img src={image_url}/>
+                    <img src={img}/>
                     <div className="text-container">
                         <h2 className="title"> { name } </h2>
                         <p className="desc">
-                            { desc }
+                            { description }
                         </p>
                     </div>
                 </div>
@@ -26,13 +26,13 @@ export default function CardInfoModal({ modalState, card })
                     <h2 className="title">BOOSTER PACKS</h2>
                     <ul className="packs">
                         {
-                            packs.map((pack, i) => (
+                            boosters.map((pack, i) => (
                                 <li key={i + 1} className="pack">
-                                    <img src={pack.image_url}/>
+                                    <img src={pack.img}/>
                                     <div className="text-container">
                                         <h2 className="title">{ pack.name }</h2>
                                         <p className="desc">
-                                            { pack.desc }
+                                            { pack.unlock }
                                         </p>
                                     </div>
                                 </li>                             
